@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+    int cantidad, nota;
+    int mayor, menor;
+    int i;
+    float suma = 0, promedio;
+
+    // Validar cantidad de estudiantes
+    printf("Ingrese la cantidad de estudiantes: ");
+    scanf("%d", &cantidad);
+
+    while (cantidad <= 0) {
+        printf("Error. La cantidad de estudiantes debe ser un numero positivo.\n");
+        printf("Ingrese la cantidad de estudiantes: ");
+        scanf("%d", &cantidad);
+    }
+
+    // Solicitar calificaciones
+    for (i = 1; i <= cantidad; i++) {
+
+        printf("Ingrese la calificacion del estudiante %d: ", i);
+        scanf("%d", &nota);
+
+        // Validar calificación
+        while (nota < 0 || nota > 100) {
+            printf("Error. La calificacion debe estar entre 0 y 100.\n");
+            printf("Ingrese nuevamente la calificacion del estudiante %d: ", i);
+            scanf("%d", &nota);
+        }
+
+        suma += nota;
+
+        // Inicializar mayor y menor con la primera nota
+        if (i == 1) {
+            mayor = nota;
+            menor = nota;
+        } else {
+            if (nota > mayor) {
+                mayor = nota;
+            }
+
+            if (nota < menor) {
+                menor = nota;
+            }
+        }
+    }
+
+    promedio = suma / cantidad;
+
+    printf("\n----- RESULTADOS -----\n");
+    printf("Promedio: %.2f\n", promedio);
+    printf("Calificacion mas alta: %d\n", mayor);
+    printf("Calificacion mas baja: %d\n", menor);
+
+    return 0;
+}
